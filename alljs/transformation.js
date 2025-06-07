@@ -87,4 +87,119 @@ const h2transformation=document.getElementsByTagName('h2');
         swiperContainer.addEventListener('mouseleave', () => swiper.autoplay.start());
     }
 });
+
+
+//drag-and-drop file uploading for your HTML element:
+
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('file');
+    const fileArea = document.getElementById('file-area');
+
+    // Highlight drop area when item is dragged over it
+    fileArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        fileArea.classList.add('highlight');
+    });
+
+    // Remove highlight when dragged item leaves
+    fileArea.addEventListener('dragleave', () => {
+        fileArea.classList.remove('highlight');
+    });
+
+    // Handle dropped files
+    fileArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        fileArea.classList.remove('highlight');
+        
+        if (e.dataTransfer.files.length) {
+            fileInput.files = e.dataTransfer.files;
+            
+            // Optional: Display file names
+            const fileNames = Array.from(e.dataTransfer.files).map(file => file.name).join(', ');
+            fileArea.querySelector('p').textContent = fileNames || 'Drag & drop files here or click to browse';
+            
+            // Optional: Trigger change event for other listeners
+            const event = new Event('change');
+            fileInput.dispatchEvent(event);
+        }
+    });
+
+    // Click to browse functionality
+    fileArea.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    // Handle regular file selection
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length) {
+            const fileNames = Array.from(fileInput.files).map(file => file.name).join(', ');
+            fileArea.querySelector('p').textContent = fileNames || 'Drag & drop files here or click to browse';
+        }
+    });
+});
  
+
+/*REVIEW  */
+  
+  document.querySelectorAll('.save-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault(); // prevent default link behavior
+      
+      const icon = btn.querySelector('i');
+      const countSpan = btn.nextElementSibling; // the span with class like-count
+      
+      let count = parseInt(countSpan.textContent) || 0;
+
+      // Toggle like (fill or unfill the heart)
+      if (icon.classList.contains('far')) {
+        // Currently empty heart, fill it and increment count
+        icon.classList.remove('far');
+        icon.classList.add('fas'); // solid heart
+        count++;
+      } else {
+        // Currently filled heart, unfill it and decrement count
+        icon.classList.remove('fas');
+        icon.classList.add('far'); // empty heart
+        count = count > 0 ? count - 1 : 0;
+      }
+      
+      countSpan.textContent = count;
+    });
+  });
+
+
+/*PAYMENT */
+  document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading indicator
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('payButton').disabled = true;
+            
+            // Get phone number
+            const phoneNumber = document.getElementById('phone').value;
+            
+            // Simulate API call to M-Pesa
+            setTimeout(function() {
+                // Hide loading indicator
+                document.getElementById('loadingIndicator').style.display = 'none';
+                
+                // Show success message
+                document.getElementById('confirmationMessage').style.display = 'block';
+                
+                // In real implementation:
+                // fetch('/api/process-payment', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({
+                //         phone: phoneNumber,
+                //         amount: {{Amount}},
+                //         serviceId: {{ServiceID}},
+                //         userId: {{UserID}}
+                //     })
+                // })
+                // .then(handleResponse)
+                // .catch(handleError);
+                
+            }, 2000);
+        });
