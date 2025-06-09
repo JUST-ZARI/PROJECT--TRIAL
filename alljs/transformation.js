@@ -89,6 +89,70 @@ const h2transformation=document.getElementsByTagName('h2');
 });
 
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+            const skillsDropdown = document.getElementById('skills');
+            const skillTagsContainer = document.getElementById('skillTagsContainer');
+            const selectedSkillsInput = document.getElementById('selectedSkillsInput');
+            let selectedSkills = [];
+            
+            // Initialize from hidden input if needed
+            if (selectedSkillsInput.value) {
+                selectedSkills = JSON.parse(selectedSkillsInput.value);
+                updateSkillTags();
+            }
+            
+            skillsDropdown.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                
+                if (selectedOption.value && !selectedSkills.includes(selectedOption.value)) {
+                    selectedSkills.push(selectedOption.value);
+                    updateSkillTags();
+                }
+                
+                // Reset dropdown to default
+                this.selectedIndex = 0;
+            });
+            
+            function updateSkillTags() {
+                skillTagsContainer.innerHTML = '';
+                selectedSkills.forEach(skillValue => {
+                    const skillOption = skillsDropdown.querySelector(`option[value="${skillValue}"]`);
+                    if (skillOption) {
+                        const tag = document.createElement('div');
+                        tag.className = 'skill-tag';
+                        tag.innerHTML = `
+                            ${skillOption.text}
+                            <span class="skill-tag-remove" data-value="${skillValue}">&times;</span>
+                        `;
+                        skillTagsContainer.appendChild(tag);
+                    }
+                });
+                
+                // Update hidden input with JSON array
+                selectedSkillsInput.value = JSON.stringify(selectedSkills);
+            }
+            
+            // Handle tag removal
+            skillTagsContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('skill-tag-remove')) {
+                    const skillValue = e.target.getAttribute('data-value');
+                    selectedSkills = selectedSkills.filter(skill => skill !== skillValue);
+                    updateSkillTags();
+                }
+            });
+            
+            });
+
+
+
+
+
+
+
+
+
 //drag-and-drop file uploading for your HTML element:
 
 document.addEventListener('DOMContentLoaded', function() {

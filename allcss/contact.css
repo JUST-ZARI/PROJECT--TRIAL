@@ -18,6 +18,7 @@ body {
 
 
 /* HEADER styles */
+/* HEADER styles */
 header {
   width: 100%;
   background-color: white;
@@ -82,22 +83,26 @@ nav {
 }
 /* Style for the Login Button */
 .login-btn {
-  padding: 10px 20px;
+  padding: 6px 20px;
   background-color: #b0f829;
   color: black;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 1px;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 3px solid transparent;
 }
 
 .login-btn:hover {
   background-color: transparent;
   color: #b0f829;
-  border: 2px solid #b0f829;
-  transform: scale(1.01);
+  border: 1px solid #000;
+  transform: scale(1.0);
 }
+
+
+
+
 
 
 

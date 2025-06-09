@@ -129,9 +129,9 @@
 }
 
 .forgot-password {
-    color: #6ca406;
+    color: #f90606;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .forgot-password:hover {
@@ -142,4 +142,7 @@
 .form {
     position: relative;
     margin-bottom: 20px;
+}
+.go_back_text a{
+    color: #a50cf7;
 }
