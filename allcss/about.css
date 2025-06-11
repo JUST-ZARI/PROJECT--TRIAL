@@ -8,9 +8,9 @@ body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Segoe UI', sans-serif;
-  background: url('/images/pexels-walls-io-440716388-21405533.jpg') no-repeat center center fixed;
+  background: url('/images/pexels-darlene-alderson-7971695.jpg') no-repeat center center fixed;
   background-size: cover;
-  min-height: 80vh; 
+  min-height: 100vh; 
   color: white;
   position: relative;
 }
@@ -56,8 +56,8 @@ header {
   font-weight: 750;
 }
 
-.green {
-  color: #94e106;
+.blue {
+  color: #126cfc;
 }
 
 .black {
@@ -88,12 +88,12 @@ nav {
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: #7ab905;
+  color: #126cfc;
 }
 /* Style for the Login Button */
 .login-btn {
   padding: 6px 20px;
-  background-color: #b0f829;
+  background-color: #126cfc;
   color: black;
   font-weight: 600;
   border-radius: 1px;
@@ -104,7 +104,7 @@ nav {
 
 .login-btn:hover {
   background-color: transparent;
-  color: #b0f829;
+  color: #126cfc;
   border: 1px solid #000;
   transform: scale(1.0);
 }
@@ -124,7 +124,7 @@ nav {
 #topbody-section h1 {
   font-size: 1.9rem;
   font-weight: 700;
-  color: #abfa18;
+  color: #126cfc;
   line-height: 1.2;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0);
@@ -155,7 +155,7 @@ nav {
 }
 
 #signup-btn a {
-  background-color: #b0f829;
+  background-color: #126cfc;
   color: black;
   padding: 10px 20px;
   text-decoration: none;
@@ -202,7 +202,7 @@ nav {
   }
   #aboutus-description h1 {
     text-align: center;
-    background-color: #b0f829; 
+    background-color: #126cfc; 
     color: #000;              
     font-weight: bold;        
     padding: 5px 10px;         
@@ -227,7 +227,7 @@ nav {
 
   /*FOOTER*/
 #footer-section {
-    background-color: #727171;
+    background-color: #9b9b9b;
     padding: 50px 20px;
     flex: 1 1 220px;
     min-width: 200px;
@@ -249,13 +249,13 @@ nav {
   }
   
   #footer-section h3 {
-    color: #b0f829;
+    color: #126cfc;
     font-size: 20px;
     margin-bottom: 15px;
   }
   
-  #footer-section .green {
-    color: #b0f829;
+  #footer-section .blue {
+    color: #126cfc;
   }
   
   #footer-section .white {
@@ -281,7 +281,7 @@ nav {
   }
   
   #footer-section ul li i {
-    color: #b0f829;
+    color: #126cfc;
     margin-right: 8px;
   }
   #footer-quick-links a,
@@ -303,15 +303,15 @@ nav {
   #social-icons a {
     display: inline-block;
     margin-right: 10px;
-    color: #b0f829;
-    border: 1px solid #b0f829;
+    color: #126cfc;
+    border: 1px solid #126cfc;
     border-radius: 50%;
     padding: 10px;
     transition: all 0.3s ease;
   }
   
   #social-icons a:hover {
-    background-color: #defb03;
+    background-color: #126cfc;
     color: #111;
   }
   
