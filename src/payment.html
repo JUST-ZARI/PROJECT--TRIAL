@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="header">
-       
         <h1>Complete Your Payment</h1>
     </div>
     
@@ -18,19 +17,17 @@
             <h2>Order Summary</h2>
             <div class="summary-row">
                 <span class="summary-label">Service</span>
-                <span class="summary-value">Service Name</span>
+                <span class="summary-value" id="service-name">Loading...</span>
             </div>
+            
             <div class="summary-row">
-                <span class="summary-label">Learner</span>
-                <span class="summary-value">Learner Name</span>
+                <span class="summary-label">Email</span>
+                <span class="summary-value" id="user-email">Loading...</span>
             </div>
-            <div class="summary-row">
-                <span class="summary-label">Session Date</span>
-                <span class="summary-value">Date</span>
-            </div>
+            
             <div class="summary-row total-row">
                 <span class="summary-label">Total due today</span>
-                <span class="summary-value">KES Amount</span>
+                <span class="summary-value" id="payment-amount">Loading...</span>
             </div>
         </div>
         
@@ -39,10 +36,6 @@
             <h2>Contact information</h2>
             <div class="contact-info">
                 <table class="info-table">
-                    <tr>
-                        <td class="info-label">Email</td>
-                        <td>User Email</td>
-                    </tr>
                     <tr>
                         <td class="info-label">Payment method</td>
                         <td>M-Pesa</td>
@@ -58,7 +51,7 @@
                         <input type="tel" id="phone" name="phone" placeholder="254712345678" required>
                     </div>
                     
-                    <button type="submit" class="btn" id="payButton">Pay KES Amount</button>
+                    <button type="submit" class="btn" id="payButton">Pay <span id="pay-button-amount">KES Amount</span></button>
                 </form>
                 
                 <div class="loading" id="loadingIndicator">
@@ -71,14 +64,12 @@
         <div class="confirmation" id="confirmationMessage">
             <div class="checkmark">✓</div>
             <h3>Payment Successful!</h3>
-            <p>A confirmation email has been sent to {{User Email}} with your session details.</p>
+            <p>A confirmation email has been sent to <span id="confirmation-email"></span> with your session details.</p>
             <button class="btn" onclick="window.location.href='dashboard.html'">View Dashboard</button>
         </div>
         
         <p class="footnote">Your payment is secure and encrypted. SkillsSwap does not store your M-Pesa PIN.</p>
     </div>
     
-    
-    </script>
 </body>
 </html>
