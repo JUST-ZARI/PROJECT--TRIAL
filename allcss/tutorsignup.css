@@ -13,7 +13,7 @@
 }
 
 .signup-header h2 {
-    color: #6ca406;
+    color: #126cfc;
     font-size: 28px;
     font-weight: 800;
     margin-bottom: 10px;
@@ -49,9 +49,9 @@
 
 .form input:focus,
 .form select:focus {
-    border-color: #6ca406;
+    border-color: #126cfc;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(108, 164, 6, 0.2);
+    box-shadow: 0 0 0 3px rgba(33, 95, 250, 0.2);
 }
 
 
@@ -64,7 +64,7 @@
             min-height: 30px;
         }
         .skill-tag {
-            background: #f0f0f0;
+            background: #3180fe;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 14px;
@@ -74,10 +74,10 @@
         .skill-tag-remove {
             margin-left: 6px;
             cursor: pointer;
-            color: #888;
+            color: #000;
         }
         .skill-tag-remove:hover {
-            color: #333;
+            color: #fff;
         }
         .hidden {
             display: none;
@@ -132,13 +132,13 @@ textarea {
 }
 
 .file-box:hover {
-    border-color: #6ca406;
+    border-color: #126cfc;
     background-color: #fff;
 }
 
 .file-box i {
     font-size: 48px;
-    color: #6ca406;
+    color: #126cfc;
     margin-bottom: 10px;
     display: block;
 }
@@ -147,7 +147,7 @@ textarea {
 .submit-btn {
     width: 100%;
     padding: 14px;
-    background: #6ca406;
+    background: #126cfc;
     color: white;
     border: none;
     border-radius: 4px;
@@ -158,7 +158,9 @@ textarea {
 }
 
 .submit-btn:hover {
-    background: #5a9200;
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 0 1px #126cfc;
 }
 
 
