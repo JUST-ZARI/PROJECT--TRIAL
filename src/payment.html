@@ -68,7 +68,10 @@
             <button class="btn" onclick="window.location.href='dashboard.html'">View Dashboard</button>
         </div>
         
-        <p class="footnote">Your payment is secure and encrypted. SkillsSwap does not store your M-Pesa PIN.</p>
+        <p id="status"></p> <!-- Shows status (waiting/success/cancelled) -->
+<div id="loadingIndicator" style="display:none;">Processing...</div>
+<div id="confirmationMessage" style="display:none;">Payment Complete. Thank you!</div>
+
     </div>
     
 </body>
