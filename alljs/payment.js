@@ -1,15 +1,13 @@
 // JavaScript to handle dynamic data population
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
 
-    // Function to populate data
+    // Function to populate payment info from URL parameters
     function populateData(data) {
-        // Set service and email from URL or fallback
         const service = data.serviceName || urlParams.get('service') || 'Service Name';
         const email = data.userEmail || urlParams.get('email') || 'User Email';
         const amountValue = data.amount || urlParams.get('amount') || 0;
 
-        // Update page content
         document.getElementById('service-name').textContent = service;
         document.getElementById('user-email').textContent = email;
         document.getElementById('payment-amount').textContent = 'KES ' + parseFloat(amountValue).toLocaleString();
@@ -17,28 +15,26 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('confirmation-email').textContent = email;
     }
 
-    // Initialize data from URL parameters
+    // Initialize form with default data
     populateData({});
 
-    // Form submission handler
-    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+    // Handle form submission for payment
+    document.getElementById('paymentForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Get phone number and validate
+        // Get phone input and validate it starts with 2547 (Safaricom format)
         const phoneNumber = document.getElementById('phone').value.trim();
         if (!phoneNumber.match(/^2547\d{8}$/)) {
             alert("Please enter a valid Kenyan phone number starting with 2547...");
             return;
         }
 
-        // Show loading state
+        // Show loading indicator while STK Push is initiated
         document.getElementById('loadingIndicator').style.display = 'block';
         document.getElementById('payButton').disabled = true;
 
-        // Get amount (remove KES and comma)
+        // Get payment details
         const amount = document.getElementById('payment-amount').textContent.replace('KES ', '').replace(/,/g, '');
-
-        // Prepare data for backend
         const requestData = {
             phone: phoneNumber,
             amount: amount,
@@ -46,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
             email: document.getElementById('user-email').textContent
         };
 
-        // Send STK Push request
+        // Send STK Push request to backend
         fetch('/api/stk/push', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(requestData)
         })
@@ -59,16 +55,44 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('loadingIndicator').style.display = 'none';
 
             if (data.success) {
-                // Show success message
-                document.getElementById('paymentForm').style.display = 'none';
-                document.getElementById('confirmationMessage').style.display = 'block';
+                // Extract CheckoutRequestID from M-Pesa API response
+                const checkoutID = data.data.CheckoutRequestID;
+
+                // Show waiting message
+                document.getElementById('status').textContent = "📲 Waiting for user to complete payment on phone...";
+
+                // Start polling backend to check payment status every 3 seconds
+                const interval = setInterval(() => {
+                    fetch(`/api/payment-status/${checkoutID}`)
+                        .then(res => res.json())
+                        .then(result => {
+                            if (result.found) {
+                                clearInterval(interval); // Stop checking once result found
+
+                                if (result.status === "success") {
+                                    // Show success message and hide form
+                                    document.getElementById('paymentForm').style.display = 'none';
+                                    document.getElementById('confirmationMessage').style.display = 'block';
+                                    document.getElementById('status').textContent = "✅ Payment Successful!";
+                                } else {
+                                    // Payment failed/cancelled
+                                    document.getElementById('status').textContent = "❌ Payment Cancelled.";
+                                    document.getElementById('payButton').disabled = false;
+                                }
+                            }
+                        })
+                        .catch(err => {
+                            console.error("Polling error:", err);
+                        });
+                }, 3000); // Poll every 3 seconds
             } else {
+                // STK push failed on backend
                 alert('Payment failed: ' + (data.message || 'Unknown error'));
                 document.getElementById('payButton').disabled = false;
             }
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error during STK push:', error);
             document.getElementById('loadingIndicator').style.display = 'none';
             document.getElementById('payButton').disabled = false;
             alert('An error occurred while processing your payment');
