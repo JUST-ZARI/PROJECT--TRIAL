@@ -13,6 +13,12 @@ body {
   min-height: 100vh; 
   color: white;
   position: relative;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+body.loaded {
+  opacity: 1;
 }
 
 
@@ -100,8 +106,11 @@ nav {
   transform: scale(1.0);
 }
 
+<<<<<<< HEAD:public/allcss/experts.css
 
 
+=======
+>>>>>>> 5df999b3693b2d72cb91d9032934cbcf009208f3:allcss/experts.css
 /* Search Bar */
 .search-container {
     width: 100%;
@@ -133,27 +142,41 @@ nav {
 .experts-container{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 30px;
   padding: 40px;
+  justify-content: flex-start;
 }
 .expert-card {
+  flex: 0 0 calc(33.333% - 20px); /* 3 per row */
   background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  flex: 0 1 calc(33.333% - 20px); /* 3 per row with gap compensation */
   display: flex;
-  max-width: none; 
-  margin: 0 ;
   justify-content: space-between;
-  flex-wrap: wrap;
+  align-items: flex-start; 
   gap: 15px;
+  box-sizing: border-box;
   transition: transform 0.3s ease;
 }
 
 .expert-card:hover {
   transform: translateY(-5px);
+}
+
+.expert-card.fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .expert-info {
@@ -238,7 +261,11 @@ nav {
 
 /*FOOTER*/
 #footer-section {
+<<<<<<< HEAD:public/allcss/experts.css
   background-color: #9b9b9b;
+=======
+  background-color: #868585;
+>>>>>>> 5df999b3693b2d72cb91d9032934cbcf009208f3:allcss/experts.css
   padding: 50px 20px;
   flex: 1 1 220px;
   min-width: 200px;
